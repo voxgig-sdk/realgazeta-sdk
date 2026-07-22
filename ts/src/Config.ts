@@ -1,0 +1,169 @@
+
+import { BaseFeature } from './feature/base/BaseFeature'
+import { TestFeature } from './feature/test/TestFeature'
+
+
+
+const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
+   test: TestFeature,
+
+}
+
+
+class Config {
+
+  makeFeature(this: any, fn: string) {
+    const fc = FEATURE_CLASS[fn]
+    const fi = new fc()
+    // TODO: errors etc
+    return fi
+  }
+
+
+  main = {
+    name: 'ProjectName',
+  }
+
+
+  feature = {
+     test:     {
+      "options": {
+        "active": false
+      }
+    },
+
+  }
+
+
+  options = {
+    base: 'https://realgazeta.com.ua/ghost/api/content',
+
+    auth: {
+      prefix: '',
+    },
+
+    headers: {
+      "content-type": "application/json"
+    },
+
+    entity: {
+      
+      author: {
+      },
+
+    }
+  }
+
+
+  entity = {
+    "author": {
+      "fields": [
+        {
+          "active": true,
+          "name": "author",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 0
+        },
+        {
+          "active": true,
+          "name": "meta",
+          "req": false,
+          "type": "`$OBJECT`",
+          "index$": 1
+        }
+      ],
+      "name": "author",
+      "op": {
+        "load": {
+          "input": "data",
+          "name": "load",
+          "points": [
+            {
+              "active": true,
+              "args": {
+                "params": [
+                  {
+                    "active": true,
+                    "example": "sofiia",
+                    "kind": "param",
+                    "name": "slug",
+                    "orig": "slug",
+                    "reqd": true,
+                    "type": "`$STRING`",
+                    "index$": 0
+                  }
+                ],
+                "query": [
+                  {
+                    "active": true,
+                    "example": "",
+                    "kind": "query",
+                    "name": "field",
+                    "orig": "field",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "example": "count.posts,followers",
+                    "kind": "query",
+                    "name": "include",
+                    "orig": "include",
+                    "reqd": false,
+                    "type": "`$STRING`"
+                  },
+                  {
+                    "active": true,
+                    "example": "9a522231cecde5421b239b663b",
+                    "kind": "query",
+                    "name": "key",
+                    "orig": "key",
+                    "reqd": true,
+                    "type": "`$STRING`"
+                  }
+                ]
+              },
+              "method": "GET",
+              "orig": "/authors/slug/{slug}/",
+              "parts": [
+                "authors",
+                "slug",
+                "{slug}"
+              ],
+              "select": {
+                "exist": [
+                  "field",
+                  "include",
+                  "key",
+                  "slug"
+                ]
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "index$": 0
+            }
+          ],
+          "key$": "load"
+        }
+      },
+      "relations": {
+        "ancestors": [
+          [
+            "slug"
+          ]
+        ]
+      }
+    }
+  }
+}
+
+
+const config = new Config()
+
+export {
+  config
+}
+

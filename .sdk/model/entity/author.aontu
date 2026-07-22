@@ -1,0 +1,98 @@
+# Entity: author
+
+main: kit: entity: author: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "author"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "meta"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "author"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "sofiia"
+                kind: "param"
+                name: "slug"
+                orig: "slug"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: ""
+                kind: "query"
+                name: "field"
+                orig: "field"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "count.posts,followers"
+                kind: "query"
+                name: "include"
+                orig: "include"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "9a522231cecde5421b239b663b"
+                kind: "query"
+                name: "key"
+                orig: "key"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/authors/slug/{slug}/"
+          parts: [
+            "authors"
+            "slug"
+            "{slug}"
+          ]
+          select: {
+            exist: [
+              "field"
+              "include"
+              "key"
+              "slug"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "slug"
+      ]
+    ]
+  }
+
+
+
+}

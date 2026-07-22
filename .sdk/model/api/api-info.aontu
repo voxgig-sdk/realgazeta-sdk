@@ -1,0 +1,32 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "API Documentation"
+        url: "https://github.com/l0v3m0n3y/realgazeta"
+      }
+      description: "The Realgazeta API provides access to thoughts, stories, and ideas from the realgazeta.com.ua website. It allows developers to pull content programmatically, enabling integration with various applications and services."
+      security: {
+        in: "query"
+        name: "key"
+        prefix: ""
+        scheme: "ApiKeyAuth"
+        type: "apiKey"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://realgazeta.com.ua/ghost/api/content"
+        }
+      ]
+      summary: "The Realgazeta API provides access to thoughts, stories, and ideas from the realgazeta.com.ua website."
+      title: "Realgazeta API"
+      version: "1.0.0"
+      website: "https://github.com/l0v3m0n3y/realgazeta"
+    }
+  }
+}
+

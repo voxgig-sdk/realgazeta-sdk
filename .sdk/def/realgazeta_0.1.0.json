@@ -1,0 +1,336 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Realgazeta API",
+    "description": "The Realgazeta API provides access to thoughts, stories, and ideas from the realgazeta.com.ua website. It allows developers to pull content programmatically, enabling integration with various applications and services.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "API Documentation",
+      "url": "https://github.com/l0v3m0n3y/realgazeta"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://realgazeta.com.ua/ghost/api/content",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/authors/slug/{slug}/": {
+      "get": {
+        "summary": "Get author content",
+        "description": "Retrieves content for a specific author by their slug identifier, including author details, post count, and followers information.",
+        "operationId": "getAuthorContent",
+        "tags": [
+          "Authors"
+        ],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "description": "The unique slug identifier for the author",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "sofiia"
+            }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "description": "API key for authentication",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "9a522231cecde5421b239b663b"
+            }
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Comma-separated list of fields to include in the response. Leave empty for default fields.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "Comma-separated list of additional resources to include (e.g., count.posts, followers)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "count.posts,followers"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with author content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "authors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Unique identifier for the author"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Author's display name"
+                          },
+                          "slug": {
+                            "type": "string",
+                            "description": "URL-friendly identifier for the author"
+                          },
+                          "profile_image": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "URL to the author's profile image",
+                            "nullable": true
+                          },
+                          "cover_image": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "URL to the author's cover image",
+                            "nullable": true
+                          },
+                          "bio": {
+                            "type": "string",
+                            "description": "Author's biography",
+                            "nullable": true
+                          },
+                          "website": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Author's website URL",
+                            "nullable": true
+                          },
+                          "location": {
+                            "type": "string",
+                            "description": "Author's location",
+                            "nullable": true
+                          },
+                          "facebook": {
+                            "type": "string",
+                            "description": "Author's Facebook profile",
+                            "nullable": true
+                          },
+                          "twitter": {
+                            "type": "string",
+                            "description": "Author's Twitter handle",
+                            "nullable": true
+                          },
+                          "meta_title": {
+                            "type": "string",
+                            "description": "SEO meta title",
+                            "nullable": true
+                          },
+                          "meta_description": {
+                            "type": "string",
+                            "description": "SEO meta description",
+                            "nullable": true
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Canonical URL for the author page"
+                          },
+                          "count": {
+                            "type": "object",
+                            "description": "Count statistics",
+                            "properties": {
+                              "posts": {
+                                "type": "integer",
+                                "description": "Number of posts by this author"
+                              }
+                            }
+                          },
+                          "followers": {
+                            "type": "array",
+                            "description": "List of followers",
+                            "items": {
+                              "type": "object"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "description": "Metadata about the response",
+                      "properties": {
+                        "pagination": {
+                          "type": "object",
+                          "properties": {
+                            "page": {
+                              "type": "integer"
+                            },
+                            "limit": {
+                              "type": "integer"
+                            },
+                            "pages": {
+                              "type": "integer"
+                            },
+                            "total": {
+                              "type": "integer"
+                            },
+                            "next": {
+                              "type": "integer",
+                              "nullable": true
+                            },
+                            "prev": {
+                              "type": "integer",
+                              "nullable": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string"
+                          },
+                          "errorType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string"
+                          },
+                          "errorType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Author with specified slug does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string"
+                          },
+                          "errorType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string"
+                          },
+                          "errorType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "key",
+        "description": "API key for authentication. Required for all requests."
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Authors",
+      "description": "Operations related to author content retrieval"
+    }
+  ],
+  "externalDocs": {
+    "description": "GitHub Repository and Documentation",
+    "url": "https://github.com/l0v3m0n3y/realgazeta"
+  }
+}
