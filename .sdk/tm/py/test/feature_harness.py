@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import RealgazetaControl
-from core.error import RealgazetaError
-from core.result import RealgazetaResult
-from core.spec import RealgazetaSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import RealgazetaControl
+from projectname_sdk.core.error import RealgazetaError
+from projectname_sdk.core.result import RealgazetaResult
+from projectname_sdk.core.spec import RealgazetaSpec
 
 
 # True when this SDK was generated with the named feature.

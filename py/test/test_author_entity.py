@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from realgazeta_sdk.utility.voxgig_struct import voxgig_struct as vs
 from realgazeta_sdk import RealgazetaSDK
-from core import helpers
+from realgazeta_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner

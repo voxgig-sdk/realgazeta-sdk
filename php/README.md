@@ -39,7 +39,7 @@ Author is nested under slug, so provide the `slug`.
 
 ```php
 try {
-    // load() returns the bare Author record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Author record (throws on error).
     $author = $client->Author()->load(["slug" => "example_slug"]);
     print_r($author);
 } catch (\Throwable $err) {
@@ -55,7 +55,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $author = $client->Author()->load();
+    $author = $client->Author()->load(["slug" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -127,8 +127,9 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = RealgazetaSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$author = $client->Author()->load();
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$author = $client->Author()->load(["slug" => "example"]);
 print_r($author);
 ```
 
@@ -228,7 +229,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -250,7 +251,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
+| `authors` |  |
 | `meta` |  |
 
 Operations: Load.
@@ -276,13 +277,13 @@ Create an instance: `$author = $client->Author();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `array` |  |
+| `authors` | `array` |  |
 | `meta` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Author record (throws on error).
+// load() returns the ENTITY — call data_get() for the Author record (throws on error).
 $author = $client->Author()->load(["slug" => "slug"]);
 ```
 
@@ -364,7 +365,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $author = $client->Author();
-$author->load();
+$author->load(["slug" => "example"]);
 
 // $author->data_get() now returns the author data from the last load
 // $author->match_get() returns the last match criteria

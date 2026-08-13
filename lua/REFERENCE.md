@@ -91,7 +91,7 @@ local author = client:Author(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `table` | No |  |
+| `authors` | `table` | No |  |
 | `meta` | `table` | No |  |
 
 ### Operations

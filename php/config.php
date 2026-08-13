@@ -35,7 +35,7 @@ class RealgazetaConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'author',
+              'name' => 'authors',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 0,
@@ -99,6 +99,7 @@ class RealgazetaConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/authors/slug/{slug}/',
                   'parts' => [

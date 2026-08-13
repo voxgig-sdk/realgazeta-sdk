@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Realgazeta SDK exists test
 
 import pytest
 from realgazeta_sdk import RealgazetaSDK

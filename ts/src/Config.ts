@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Realgazeta',
   }
 
 
@@ -60,7 +60,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "author",
+          "name": "authors",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
@@ -124,6 +124,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/authors/slug/{slug}/",
               "parts": [

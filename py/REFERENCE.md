@@ -88,7 +88,7 @@ author = client.Author()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `list` | No |  |
+| `authors` | `list` | No |  |
 | `meta` | `dict` | No |  |
 
 ### Operations

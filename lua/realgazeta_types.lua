@@ -7,7 +7,7 @@
 -- edit by hand.
 
 ---@class Author
----@field author? table
+---@field authors? table
 ---@field meta? table
 
 ---@class AuthorLoadMatch

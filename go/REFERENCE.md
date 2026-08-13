@@ -99,7 +99,7 @@ fmt.Println(author.GetName()) // "author"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `[]any` | No |  |
+| `authors` | `[]any` | No |  |
 | `meta` | `map[string]any` | No |  |
 
 ### Operations

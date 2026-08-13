@@ -93,7 +93,7 @@ $author = $client->Author();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `array` | No |  |
+| `authors` | `array` | No |  |
 | `meta` | `array` | No |  |
 
 ### Operations

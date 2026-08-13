@@ -2,19 +2,19 @@
   "existing": {
     "author": {
       "AUTHOR00": {
-        "author": [],
+        "authors": [],
         "meta": {},
         "slug": "SLUG01",
         "id": "AUTHOR00"
       },
       "AUTHOR01": {
-        "author": [],
+        "authors": [],
         "meta": {},
         "slug": "SLUG01",
         "id": "AUTHOR01"
       },
       "AUTHOR02": {
-        "author": [],
+        "authors": [],
         "meta": {},
         "slug": "SLUG01",
         "id": "AUTHOR02"
@@ -24,7 +24,7 @@
   "new": {
     "author": {
       "author_ref01": {
-        "author": [],
+        "authors": [],
         "meta": {}
       }
     }

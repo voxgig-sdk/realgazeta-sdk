@@ -6,7 +6,7 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Author {
-  author?: any[]
+  authors?: any[]
   meta?: Record<string, any>
 }
 

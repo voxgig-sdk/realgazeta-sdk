@@ -117,7 +117,7 @@ const author = client.Author()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `any[]` | No |  |
+| `authors` | `any[]` | No |  |
 | `meta` | `Record<string, any>` | No |  |
 
 ### Operations

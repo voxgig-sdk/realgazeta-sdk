@@ -94,7 +94,7 @@ author = client.Author
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | `Array` | No |  |
+| `authors` | `Array` | No |  |
 | `meta` | `Hash` | No |  |
 
 ### Operations

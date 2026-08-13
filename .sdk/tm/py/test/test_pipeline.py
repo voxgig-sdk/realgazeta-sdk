@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import RealgazetaSDK
-from core.error import RealgazetaError
-from core.result import RealgazetaResult
-from core.response import RealgazetaResponse
-from core.spec import RealgazetaSpec
-from feature.base_feature import RealgazetaBaseFeature
+from projectname_sdk.core.error import RealgazetaError
+from projectname_sdk.core.result import RealgazetaResult
+from projectname_sdk.core.response import RealgazetaResponse
+from projectname_sdk.core.spec import RealgazetaSpec
+from projectname_sdk.feature.base_feature import RealgazetaBaseFeature
 
 
 def _client():

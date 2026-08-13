@@ -58,7 +58,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const author = await client.Author().load()
+  const author = await client.Author().load({ slug: "example" })
   console.log(author)
 } catch (err) {
   console.error('load failed:', err)
@@ -125,8 +125,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = RealgazetaSDK.test()
 
-const author = await client.Author().load()
-// author is a bare entity populated with mock response data
+const author = await client.Author().load({ slug: 'example_slug' })
+// author is the entity, populated with mock response data
+// — call author.data() for the record itself
 console.log(author)
 ```
 
@@ -145,7 +146,7 @@ Entity instances remember their last match and data:
 const entity = client.Author()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ slug: 'example_slug' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -293,7 +294,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
+| `authors` |  |
 | `meta` |  |
 
 Operations: load.
@@ -319,7 +320,7 @@ Create an instance: `const author = client.Author()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `any[]` |  |
+| `authors` | `any[]` |  |
 | `meta` | `Record<string, any>` |  |
 
 #### Example: Load
@@ -399,7 +400,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const author = client.Author()
-await author.load()
+await author.load({ slug: "example" })
 
 // author.data() now returns the author data from the last `load`
 // author.match() returns the last match criteria

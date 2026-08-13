@@ -15,7 +15,7 @@ declare(strict_types=1);
 /** Author entity data model. */
 class Author
 {
-    public ?array $author = null;
+    public ?array $authors = null;
     public ?array $meta = null;
 }
 

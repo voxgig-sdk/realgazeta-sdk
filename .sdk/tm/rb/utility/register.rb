@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ RealgazetaUtility.registrar = ->(u) {
   u.prepare_params = RealgazetaUtilities::PrepareParams
   u.prepare_path = RealgazetaUtilities::PreparePath
   u.prepare_query = RealgazetaUtilities::PrepareQuery
+  u.graphql_body = RealgazetaUtilities::GraphqlBody
+  u.graphql_errors = RealgazetaUtilities::GraphqlErrors
   u.result_basic = RealgazetaUtilities::ResultBasic
   u.result_body = RealgazetaUtilities::ResultBody
   u.result_headers = RealgazetaUtilities::ResultHeaders

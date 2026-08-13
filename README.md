@@ -23,7 +23,7 @@ support (`load`):
 
 ```ts
 const client = new RealgazetaSDK()
-const author = await client.Author().load()
+const author = await client.Author().load({ slug: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = RealgazetaSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = RealgazetaSDK.test({
+  entity: {
+    author: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const author = await client.Author().load({ slug: 'example_slug' })
-// author is a bare Author populated with mock data
+// author is the Author entity, populated with mock data
+// — call author.data() for the record itself
 console.log(author)
 ```
 
@@ -192,7 +201,7 @@ $client = new RealgazetaSDK([
 ]);
 
 
-// Load a specific author (returns the bare record; throws on error)
+// Load a specific author (returns the ENTITY; call data_get() for the record; throws on error)
 $author = $client->Author()->load(["slug" => "example_slug"]);
 print_r($author);
 ```
@@ -227,7 +236,7 @@ client = RealgazetaSDK.new({
 })
 
 
-# Load a specific author (returns the bare record; raises on error)
+# Load a specific author (returns the ENTITY; call data_get for the record)
 author = client.Author.load({ "slug" => "example_slug" })
 puts author
 ```
@@ -363,6 +372,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/l0v3m0n3y/realgazeta](https://github.com/l0v3m0n3y/realgazeta)
 

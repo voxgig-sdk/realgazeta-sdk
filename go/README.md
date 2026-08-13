@@ -69,7 +69,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-author, err := client.Author(nil).Load(nil, nil)
+author, err := client.Author(nil).Load(map[string]any{"slug": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -139,7 +139,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 author, err := client.Author(nil).Load(
-    nil, nil,
+    map[string]any{"slug": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -263,7 +263,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"author"` |  |
+| `"authors"` |  |
 | `"meta"` |  |
 
 Operations: Load.
@@ -289,7 +289,7 @@ Create an instance: `author := client.Author(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `[]any` |  |
+| `authors` | `[]any` |  |
 | `meta` | `map[string]any` |  |
 
 #### Example: Load
@@ -377,7 +377,7 @@ stores the returned data and match criteria internally.
 
 ```go
 author := client.Author(nil)
-author.Load(nil, nil)
+author.Load(map[string]any{"slug": "example"}, nil)
 
 // author.Data() now returns the author data from the last load
 // author.Match() returns the last match criteria

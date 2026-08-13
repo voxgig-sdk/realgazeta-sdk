@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ RealgazetaUtility::setRegistrar(function (RealgazetaUtility $u): void {
     $u->prepare_params = [RealgazetaPrepareParams::class, 'call'];
     $u->prepare_path = [RealgazetaPreparePath::class, 'call'];
     $u->prepare_query = [RealgazetaPrepareQuery::class, 'call'];
+    $u->graphql_body = [RealgazetaGraphql::class, 'body'];
+    $u->graphql_errors = [RealgazetaGraphql::class, 'errors'];
     $u->result_basic = [RealgazetaResultBasic::class, 'call'];
     $u->result_body = [RealgazetaResultBody::class, 'call'];
     $u->result_headers = [RealgazetaResultHeaders::class, 'call'];

@@ -38,7 +38,7 @@ Author is nested under slug, so provide the `slug`.
 
 ```ruby
 begin
-  # load returns the bare Author record (raises on error).
+  # load returns the ENTITY — call data_get for the Author record (raises on error).
   author = client.Author.load({ "slug" => "example_slug" })
   puts author
 rescue => err
@@ -53,7 +53,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  author = client.Author.load()
+  author = client.Author.load({ "slug" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -121,8 +121,9 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = RealgazetaSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-author = client.Author.load()
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+author = client.Author.load({ "slug" => "example" })
 puts author
 ```
 
@@ -240,7 +241,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `author` |  |
+| `authors` |  |
 | `meta` |  |
 
 Operations: Load.
@@ -266,13 +267,13 @@ Create an instance: `author = client.Author`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | `Array` |  |
+| `authors` | `Array` |  |
 | `meta` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Author record (raises on error).
+# load returns the ENTITY — call data_get for the Author record (raises on error).
 author = client.Author.load({ "slug" => "slug" })
 ```
 
@@ -354,7 +355,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 author = client.Author
-author.load()
+author.load({ "slug" => "example" })
 
 # author.data_get now returns the author data from the last load
 # author.match_get returns the last match criteria

@@ -10,13 +10,13 @@
 
 # Author entity data model.
 #
-# @!attribute [rw] author
+# @!attribute [rw] authors
 #   @return [Array, nil]
 #
 # @!attribute [rw] meta
 #   @return [Hash, nil]
 Author = Struct.new(
-  :author,
+  :authors,
   :meta,
   keyword_init: true
 )
